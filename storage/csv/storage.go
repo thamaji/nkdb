@@ -3,6 +3,7 @@ package csv
 import (
 	"encoding/csv"
 	"os"
+	"path/filepath"
 )
 
 func New(path string) *Storage {
@@ -41,7 +42,7 @@ func (storage *Storage) Save(records [][]string) error {
 			return err
 		}
 
-		if err := os.MkdirAll(storage.path, 0775); err != nil {
+		if err := os.MkdirAll(filepath.Dir(storage.path), 0775); err != nil {
 			return err
 		}
 
